@@ -31,10 +31,8 @@ type Integral interface {
 //
 // All implementations of this interface must adhere to the following rules:
 //
-//	1. If Map is called with the ID function, the result should be the same as what was in the original container. In other words:
-//		f.Map(func(i Integral) { return i }) == f
-//	2. Passing the composition of two functions to Map should return the same result as passing function A then function B. In other words:
-//		f.Map(funcA(funcB(param))) == f.Map(funcA).Map(funcB)
+//	1. f.Map(func(i Integral) { return i }) == f
+//	2. f.Map(funcA(funcB(param))) == f.Map(funcA).Map(funcB)
 type IntegralFunctor interface {
 	Map(func(Integral) Integral) IntegralFunctor
 }
