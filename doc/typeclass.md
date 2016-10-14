@@ -109,3 +109,11 @@ func AllEqual(eq, eqs ...Eq) bool {
   return true
 }
 ```
+
+And finally, we can check if lots of different types are _semantically_ equal:
+
+```go
+mt := MyType{I: 1}
+// IntEqualer and StringEqualer are omitted, but have similar implementations as we've seen in this document
+allAreEqual := AllEqual(MyTypeEqualer(mt), IntEqualer(1), StringEqualer("1"))
+```
