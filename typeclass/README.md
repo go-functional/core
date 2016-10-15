@@ -1,8 +1,10 @@
 # Typeclasses
 
-The type class is a foundational and powerful FP concept. Similar to `interface`s in Go, type classes allow you to define some behavior on a type, but not implement it. The implementation is done later.
+The type class is a foundational and powerful FP concept. Similar to `interface`s in Go, type classes allow you to define some behavior on a type, but not implement it.
 
-Type classes, however, are different from `interface`s because the implementation of the type is separate from the concrete type.
+Since the implementation is done elsewhere, this is a form of polymorphism, but much more flexible or "ad-hoc" than the traditional kind in OOP languages, and a bit more than even standard composition in Go.
+
+Type classes, are different from standard `interface`s because the implementation of the type is separate from the concrete type.
 
 ## Warning
 
