@@ -1,6 +1,6 @@
 package functor
 
-// IntSliceFunctor is the typeclass for iterating over a slice of ints,
+// IntSliceFunctor is a container of []int, and a facility for easily iterating over a slice of ints,
 // applying a function on each of them, and returning the new IntSliceFunctor with the new results.
 //
 // All implementations of this interface must adhere to the following rules:
@@ -11,8 +11,8 @@ package functor
 //	2. f.Map(funcA(funcB(param))) == f.Map(funcA).Map(funcB)
 //		- this means that you should be able to compose functions or execute them in serial
 type IntSliceFunctor interface {
-	// Map is the Functor function
-	Map(func(int) int) IntSliceFunctor
+	// Map is the Functor function. It applies fn to every element in the contained slice
+	Map(fn func(int) int) IntSliceFunctor
 	// Ints is just a convenience function to get the int slice that the functor holds
 	Ints() []int
 }

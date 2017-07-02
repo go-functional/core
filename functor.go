@@ -1,13 +1,17 @@
 package funcgo
 
+import (
+	"github.com/arschles/go-functional/typeclass"
+)
+
 // NonEmptyIntegralList is a list that has at least one IntegralListElt in it
 type NonEmptyIntegralList struct {
-	l []Integral
+	l []typeclass.Integral
 }
 
 // NewNonEmptyIntegralList creates a new NonEmptyIntegralList with i and other in it
-func NewNonEmptyIntegralList(i Integral, other ...Integral) NonEmptyIntegralList {
-	lst := []Integral{i}
+func NewNonEmptyIntegralList(i typeclass.Integral, other ...typeclass.Integral) NonEmptyIntegralList {
+	lst := []typeclass.Integral{i}
 	lst = append(lst, other...)
 	return NonEmptyIntegralList{l: lst}
 }
@@ -20,8 +24,8 @@ func (n NonEmptyIntegralList) Len() int {
 // Map executes fn against each element of n and returns the resulting list.
 //
 // This is the functor typeclass implementation
-func (n NonEmptyIntegralList) Map(fn func(Integral) Integral) []Integral {
-	ret := make([]Integral, n.Len())
+func (n NonEmptyIntegralList) Map(fn func(typeclass.Integral) typeclass.Integral) []typeclass.Integral {
+	ret := make([]typeclass.Integral, n.Len())
 	for i, elt := range n.l {
 		ret[i] = fn(elt)
 	}
@@ -29,8 +33,8 @@ func (n NonEmptyIntegralList) Map(fn func(Integral) Integral) []Integral {
 }
 
 // Filter runs fn on every item in n and returns a slice of elements in n for which fn returned true. Elements are returned in order of appearance
-func (n NonEmptyIntegralList) Filter(fn func(Integral) bool) NonEmptyIntegralList {
-	ret := []Integral{}
+func (n NonEmptyIntegralList) Filter(fn func(typeclass.Integral) bool) NonEmptyIntegralList {
+	ret := []typeclass.Integral{}
 	for _, elt := range n.l {
 		if fn(elt) {
 			ret = append(ret, elt)
