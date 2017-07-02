@@ -1,4 +1,4 @@
-package funcgo
+package util
 
 import (
 	"github.com/arschles/go-functional/typeclass"

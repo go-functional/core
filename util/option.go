@@ -1,4 +1,4 @@
-package funcgo
+package util
 
 // Option is the type that can either be something or nothing
 type Option interface {
