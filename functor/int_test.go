@@ -17,12 +17,8 @@ func TestIntSliceFunctor(t *testing.T) {
 		t.Logf("%#v", i)
 		return i
 	}
-	retFunctor := functor.Map(plusOne).Map(log).Map(minusOne)
-	retIntSliceFunctor, ok := retFunctor.(IntSliceFunctor)
-	if !ok {
-		t.Fatalf("returned functor was not an IntegralFunctor")
-	}
-	if len(retIntSliceFunctor.ints) != len(ints) {
+	retIntSliceFunctor := functor.Map(plusOne).Map(log).Map(minusOne)
+	if len(retIntSliceFunctor.Ints()) != len(ints) {
 		t.Fatalf(
 			"resultant ints length (%d) is not the same as original length (%d)",
 			len(retIntSliceFunctor.ints),
