@@ -8,7 +8,7 @@ Type classes, are different from standard `interface`s because the implementatio
 
 ## Warning
 
-Type classes in Go don't fit into the langauge very well, and here's why:
+Type classes in Go don't fit into the language very well, and here's why:
 
 1. Go doesn't have generics or classical higher-order functions
 2. The Go compiler doesn't have the ability to implicitly convert one type to another
