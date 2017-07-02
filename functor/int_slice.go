@@ -10,17 +10,25 @@ package functor
 //			thing
 //	2. f.Map(funcA(funcB(param))) == f.Map(funcA).Map(funcB)
 //		- this means that you should be able to compose functions or execute them in serial
-type IntSliceFunctor struct {
+type IntSliceFunctor interface {
+	// Map is the Functor function
+	Map(func(int) int) IntSliceFunctor
+	// Ints is just a convenience function to get the int slice that the functor holds
+	Ints() []int
+}
+
+type intSliceFunctorImpl struct {
 	ints []int
 }
 
-// ToIntSliceFunctor is the "constructor" to convert an []int into an IntSliceFunctor
-func ToIntSliceFunctor(ints []int) IntSliceFunctor {
-	return IntSliceFunctor{ints: ints}
+// LiftIntSlice converts an int slice into an IntSliceFunctor. In FP terms, this operation
+// is called "lifting", and in many languages it's done automatically
+func LiftIntSlice(slice []int) IntSliceFunctor {
+	return intSliceFunctorImpl{ints: slice}
 }
 
 // Map executes fn on every int in isf's internal slice and returns the resultant ints
-func (isf IntSliceFunctor) Map(fn func(int) int) IntSliceFunctor {
+func (isf intSliceFunctorImpl) Map(fn func(int) int) IntSliceFunctor {
 	for i, elt := range isf.ints {
 		retInt := fn(elt)
 		isf.ints[i] = retInt
@@ -29,6 +37,6 @@ func (isf IntSliceFunctor) Map(fn func(int) int) IntSliceFunctor {
 }
 
 // Ints just returns a copy of the ints in isf
-func (isf IntSliceFunctor) Ints() []int {
+func (isf intSliceFunctorImpl) Ints() []int {
 	return isf.ints
 }

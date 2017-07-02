@@ -9,6 +9,6 @@ func intSliceFunctorExample() {
 		return i + 1
 	}
 	slice := []int{1, 2, 3, 4}
-	results := ToIntSliceFunctor(slice).Map(doSomething).Ints()
+	results := LiftIntSlice(slice).Map(doSomething).Ints()
 	log.Println(results)
 }
