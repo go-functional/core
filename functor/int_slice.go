@@ -1,5 +1,9 @@
 package functor
 
+import (
+	"sync"
+)
+
 // IntSliceFunctor is a container of []int, and a facility for easily iterating over a slice of ints,
 // applying a function on each of them, and returning the new IntSliceFunctor with the new results.
 //
@@ -29,11 +33,50 @@ func LiftIntSlice(slice []int) IntSliceFunctor {
 
 // Map executes fn on every int in isf's internal slice and returns the resultant ints
 func (isf intSliceFunctorImpl) Map(fn func(int) int) IntSliceFunctor {
-	for i, elt := range isf.ints {
-		retInt := fn(elt)
-		isf.ints[i] = retInt
+	if len(isf.ints) < 100 {
+		isf.ints = serialIntMapper(isf.ints, fn)
+		return isf
 	}
+	isf.ints = parallelIntMapper(isf.ints, fn)
 	return isf
+}
+
+func serialIntMapper(ints []int, fn func(int) int) []int {
+	for i, elt := range ints {
+		retInt := fn(elt)
+		ints[i] = retInt
+	}
+	return ints
+}
+
+type parallelIntMapperResult struct {
+	idx int
+	val int
+}
+
+func parallelIntMapper(ints []int, fn func(int) int) []int {
+	resultsCh := make(chan parallelIntMapperResult)
+	var wg sync.WaitGroup
+	for i, elt := range ints {
+		wg.Add(1)
+		ch := make(chan parallelIntMapperResult)
+		go func(idx int, elt int) {
+			ch <- parallelIntMapperResult{idx: idx, val: fn(elt)}
+		}(i, elt)
+		go func() {
+			defer wg.Done()
+			elt := <-ch
+			resultsCh <- elt
+		}()
+	}
+	go func() {
+		wg.Wait()
+		close(resultsCh)
+	}()
+	for elt := range resultsCh {
+		ints[elt.idx] = elt.val
+	}
+	return ints
 }
 
 // Ints just returns a copy of the ints in isf
