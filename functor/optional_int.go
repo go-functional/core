@@ -4,13 +4,13 @@ import (
 	"github.com/go-functional/core/util"
 )
 
-// OptionalIntFunctor is a container for an int that may or may not exist. You ma
+// OptionalIntFunctor is a container for an int that may or may not exist.
 type OptionalIntFunctor interface {
 	util.Option
 	// Map is the functor function. It applies fn to the contained int, if one exists
 	Map(fn func(int) int) OptionalIntFunctor
 	// Int returns the int that is contained. The return value of this function is undefined
-	// if the functional.Option's Empty() method returns true
+	// if the Option's Empty() method returns true
 	Int() int
 }
 
