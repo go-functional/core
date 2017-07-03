@@ -19,8 +19,8 @@ type optionalIntFunctorImpl struct {
 	exists bool
 }
 
-// NoInt returns an OptionalIntFunctor that is missing an int
-func NoInt() OptionalIntFunctor {
+// EmptyInt returns an OptionalIntFunctor that is missing an int
+func Empty() OptionalIntFunctor {
 	return optionalIntFunctorImpl{exists: false}
 }
 
