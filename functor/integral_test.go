@@ -3,7 +3,7 @@ package functor
 import (
 	"testing"
 
-	"github.com/arschles/go-functional/typeclass"
+	"github.com/go-functional/core/typeclass"
 )
 
 func TestIntegralSliceFunctor(t *testing.T) {

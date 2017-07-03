@@ -1,7 +1,7 @@
 package util
 
 import (
-	"github.com/arschles/go-functional/typeclass"
+	"github.com/go-functional/core/typeclass"
 )
 
 // NonEmptyIntegralList is a list that has at least one IntegralListElt in it

@@ -1,7 +1,7 @@
 package functor
 
 import (
-	"github.com/arschles/go-functional/typeclass"
+	"github.com/go-functional/core/typeclass"
 )
 
 // IntegralFunctor is the typeclass for iterating over a container of Integral typeclasses,

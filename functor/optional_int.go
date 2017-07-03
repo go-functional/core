@@ -1,7 +1,7 @@
 package functor
 
 import (
-	"github.com/arschles/go-functional/util"
+	"github.com/go-functional/core/util"
 )
 
 // OptionalIntFunctor is a container for an int that may or may not exist. You ma
