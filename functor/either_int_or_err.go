@@ -20,7 +20,7 @@ type eitherIntOrErrImpl struct {
 	err error
 }
 
-// EitherIntLeft returns a left-side EitherIntOrErr (an int)
+// EitherIntOrErrLeft returns a left-side EitherIntOrErr (an int)
 func EitherIntOrErrLeft(i int) EitherIntOrErr {
 	return eitherIntOrErrImpl{i: i}
 }
