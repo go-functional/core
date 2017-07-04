@@ -13,3 +13,33 @@ type OptionalErrFunctor interface {
 	// if the Option's Empty() method returns true
 	Err() error
 }
+
+type optionalErrFunctorImpl struct {
+	err error
+}
+
+// EmptyErr returns an OptionalIntFunctor that is missing an int
+func EmptyErr() OptionalErrFunctor {
+	return optionalErrFunctorImpl{err: nil}
+}
+
+// SomeErr returns an OptionalIntFunctor that has an int
+func SomeErr(err error) OptionalErrFunctor {
+	return optionalErrFunctorImpl{err: err}
+}
+
+func (o optionalErrFunctorImpl) Map(fn func(error) error) OptionalErrFunctor {
+	if o.err != nil {
+		o.err = fn(o.err)
+		return o
+	}
+	return o
+}
+
+func (o optionalErrFunctorImpl) Empty() bool {
+	return o.err == nil
+}
+
+func (o optionalErrFunctorImpl) Err() error {
+	return o.err
+}
