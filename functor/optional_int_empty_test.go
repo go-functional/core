@@ -2,6 +2,8 @@ package functor
 
 import (
 	"testing"
+
+	"github.com/arschles/assert"
 )
 
 func TestEmptyInt(t *testing.T) {
@@ -9,11 +11,8 @@ func TestEmptyInt(t *testing.T) {
 		return 0
 	}
 	ei := EmptyInt()
-	if !ei.Empty() {
-		t.Fatalf("EmptyInt not reported as empty")
-	}
+	assert.True(t, ei.Empty(), "EmptyInt not reported as empty")
+
 	mapped := ei.Map(mapFn)
-	if !mapped.Empty() {
-		t.Fatalf("mapped EmptyInt not reported as empty")
-	}
+	assert.True(t, mapped.Empty(), "mapped EmptyInt not reported as empty")
 }
