@@ -3,6 +3,8 @@ package functor
 import (
 	"errors"
 	"testing"
+
+	"github.com/arschles/assert"
 )
 
 func TestSomeErr(t *testing.T) {
@@ -16,23 +18,10 @@ func TestSomeErr(t *testing.T) {
 
 	// create an error that exists
 	someErr := SomeErr(testErr)
-	if someErr.Err() != testErr {
-		t.Fatalf("expected error %s, got %s", testErr, someErr.Err())
-	}
-	if someErr.Empty() {
-		t.Fatalf("expected SomeErr to return not empty")
-	}
+	assert.Err(t, testErr, someErr.Err())
+	assert.False(t, someErr.Empty(), "expected SomeErr to return not empty")
 
 	mapped := someErr.Map(mapFunc)
-	if mapped.Err() != mapFunc(testErr) {
-		t.Fatalf(
-			"expected mapped functor's error to be %s, got %s",
-			mapFunc(testErr),
-			mapped.Err(),
-		)
-	}
-	if mapped.Empty() {
-		t.Fatalf("expected mapped SomeErr to not be empty")
-	}
+	assert.Err(t, mapFunc(testErr), mapped.Err())
+	assert.False(t, mapped.Empty(), "expected mapped SomeErr to not be empty")
 }
-

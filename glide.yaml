@@ -1,0 +1,4 @@
+package: github.com/go-functional/core
+import: []
+testImport:
+- package: github.com/arschles/assert

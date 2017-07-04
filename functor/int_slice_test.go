@@ -2,6 +2,8 @@ package functor
 
 import (
 	"testing"
+
+	"github.com/arschles/assert"
 )
 
 func intSlice(numInts int) []int {
@@ -30,23 +32,16 @@ func TestIntSliceFunctor(t *testing.T) {
 			return i
 		}
 		retIntSliceFunctor := functor.Map(plusOne).Map(log).Map(minusOne)
-		if len(retIntSliceFunctor.Ints()) != len(ints) {
-			t.Fatalf(
-				"resultant ints length (%d) is not the same as original length (%d)",
-				len(retIntSliceFunctor.Ints()),
-				len(ints),
-			)
-		}
+		assert.Equal(
+			t,
+			len(retIntSliceFunctor.Ints()),
+			len(ints),
+			"resultant ints not the same as original length",
+		)
+
 		for i, origInt := range ints {
 			retInt := retIntSliceFunctor.Ints()[i]
-			if origInt != retInt {
-				t.Fatalf(
-					"expected %d for int # %d, got %d instead",
-					origInt,
-					i,
-					retInt,
-				)
-			}
+			assert.Equal(t, retInt, origInt, "returned int")
 		}
 	}
 }
