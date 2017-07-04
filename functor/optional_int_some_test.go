@@ -1,7 +1,10 @@
 package functor
 
 import (
+	"fmt"
 	"testing"
+
+	"github.com/arschles/assert"
 )
 
 func TestSomeInt(t *testing.T) {
@@ -10,17 +13,23 @@ func TestSomeInt(t *testing.T) {
 		return i + 4
 	}
 	si := SomeInt(i)
-	if si.Empty() {
-		t.Fatalf("SomeInt reported as empty")
-	}
-	if si.Int() != 1 {
-		t.Fatalf("SomeInt.Int() reported %d, expected %d", si.Int(), i)
-	}
-	newSI := si.Map(mapFn)
-	if newSI.Empty() {
-		t.Fatalf("SomeInt reported as empty")
-	}
-	if newSI.Int() != mapFn(i) {
-		t.Fatalf("SomeInt.Int() reported %d, expected %d", newSI.Int(), mapFn(i))
-	}
+	assert.False(t, si.Empty(), "SomeInt reported as empty")
+	assert.Equal(t, si.Int(), i, fmt.Sprintf(
+		"SomeInt.Int() reported %d, expected %d",
+		si.Int(),
+		i,
+	))
+
+	mapped := si.Map(mapFn)
+	assert.False(t, mapped.Empty(), "mapped SomeInt reported as empty")
+	assert.Equal(
+		t,
+		mapped.Int(),
+		mapFn(i),
+		fmt.Sprintf(
+			"mapped SomeInt.Int() reported %d, expected %d",
+			mapped.Int(),
+			mapFn(i),
+		),
+	)
 }
