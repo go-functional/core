@@ -20,7 +20,7 @@ type optionalIntFunctorImpl struct {
 }
 
 // EmptyInt returns an OptionalIntFunctor that is missing an int
-func Empty() OptionalIntFunctor {
+func EmptyInt() OptionalIntFunctor {
 	return optionalIntFunctorImpl{exists: false}
 }
 
