@@ -40,12 +40,20 @@ func (e eitherIntOrErrImpl) Right() bool {
 	return e.err != nil
 }
 
+// ToLeft returns an optional int that will be Some if e.Left returns true.
+// In FP terms, this is a called a "Left projection"
 func (e eitherIntOrErrImpl) ToLeft() OptionalIntFunctor {
-	// TODO: implement
-	return nil
+	if e.err == nil {
+		return SomeInt(e.i)
+	}
+	return EmptyInt()
 }
 
+// ToRight returns an optional err that will be Some if e.Right returns true.
+// In FP terms, this is called a "Right projection"
 func (e eitherIntOrErrImpl) ToRight() OptionalErrFunctor {
-	// TODO: implement
-	return nil
+	if e.err != nil {
+		return SomeErr(e.err)
+	}
+	return EmptyErr()
 }
