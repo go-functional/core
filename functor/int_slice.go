@@ -1,9 +1,5 @@
 package functor
 
-import (
-	"sync"
-)
-
 // IntSliceFunctor is a container of []int, and a facility for easily iterating over a slice of ints,
 // applying a function on each of them, and returning the new IntSliceFunctor with the new results.
 //
