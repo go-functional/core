@@ -16,4 +16,11 @@ func TestEitherIntOrErrLeft(t *testing.T) {
 	assert.False(t, leftProj.Empty(), "left projection reported as empty")
 	assert.True(t, rightProj.Empty(), "right projection not reported as empty")
 	assert.Equal(t, leftProj.Int(), i, "left projection int")
+
+	intFunc := func(i int) int {
+		return i + 1
+	}
+	mapped := leftProj.Map(intFunc)
+	assert.False(t, mapped.Empty(), "right mapped projection reported as empty")
+	assert.Equal(t, mapped.Int(), intFunc(i), "returned int")
 }
