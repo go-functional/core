@@ -1,2 +1,2 @@
 test:
-	go test $(glide nv)
+	go test $$(glide nv)
