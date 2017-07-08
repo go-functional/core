@@ -22,7 +22,14 @@ func TestEitherIntOrErrRight(t *testing.T) {
 	errFunc := func(err error) error {
 		return fmt.Errorf("%s1", err.Error())
 	}
-	mapped := rightProj.Map(errFunc)
-	assert.False(t, mapped.Empty(), "right mapped projection reported as empty")
-	assert.Equal(t, mapped.Err(), errFunc(err), "returned error")
+	mappedRight := rightProj.Map(errFunc)
+	assert.False(t, mappedRight.Empty(), "right mapped projection reported as empty")
+	assert.Equal(t, mappedRight.Err(), errFunc(err), "returned error")
+
+	mappedLeft := leftProj.Map(func(int) int {
+		// this function should never be called
+		return 1
+	})
+	assert.True(t, mappedLeft.Empty(), "left mapped projection reported as not empty")
+	// don't check the Int method - its return value is undefined if Empty returns true
 }
