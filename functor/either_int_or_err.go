@@ -9,9 +9,11 @@ import (
 // Call ToLeft or ToRight to get functors that represent either side
 type EitherIntOrErr interface {
 	util.Either
-	// ToLeft converts  is the functor function. It applies fn to the contained int, if one exists
+	// ToLeft converts the either to the left side. The resulting OptionalIntFunctor
+	// will be full if this either was the left side, and empty if right
 	ToLeft() OptionalIntFunctor
-	// Map is the functor function. It applies fn to the contained int, if
+	// ToRight converts the either to the right side. The resulting OptionalErrFunctor
+	// will be full if this either was the right side, and empty if left
 	ToRight() OptionalErrFunctor
 }
 
