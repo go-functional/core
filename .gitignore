@@ -23,3 +23,5 @@ _testmain.go
 *.test
 *.prof
 vendor
+bin/simplefunctor
+bin/bigfunctor
