@@ -22,3 +22,8 @@ chanfunctor:
 optional:
 	go build -o bin/optional ./examples/optional
 	bin/optional
+
+.PHONY: either
+either: 
+	go build -o bin/either ./examples/either
+	bin/either
