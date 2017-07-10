@@ -1,5 +1,9 @@
 package functor
 
+import (
+	"fmt"
+)
+
 // LiftIntSliceFromChan converts a readonly chan of ints into an
 // IntSliceFunctor. In FP terms, this is called "lifting".
 //
@@ -29,4 +33,8 @@ func (i intSliceFromChanFunctorImpl) Map(fn func(int) int) IntSliceFunctor {
 
 func (i intSliceFromChanFunctorImpl) Ints() []int {
 	return i.slice
+}
+
+func (i intSliceFromChanFunctorImpl) String() string {
+	return fmt.Sprintf("%#v", i.slice)
 }

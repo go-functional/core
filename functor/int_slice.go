@@ -1,5 +1,9 @@
 package functor
 
+import (
+	"fmt"
+)
+
 // IntSliceFunctor is a container of []int, and a facility for easily iterating over a slice of ints,
 // applying a function on each of them, and returning the new IntSliceFunctor with the new results.
 //
@@ -11,6 +15,7 @@ package functor
 //	2. f.Map(funcA(funcB(param))) == f.Map(funcA).Map(funcB)
 //		- this means that you should be able to compose functions or execute them in serial
 type IntSliceFunctor interface {
+	fmt.Stringer
 	// Map is the Functor function. It applies fn to every element in the contained slice
 	Map(fn func(int) int) IntSliceFunctor
 	// Ints is just a convenience function to get the int slice that the functor holds
@@ -40,4 +45,11 @@ func (isf intSliceFunctorImpl) Map(fn func(int) int) IntSliceFunctor {
 // Ints just returns a copy of the ints in isf
 func (isf intSliceFunctorImpl) Ints() []int {
 	return isf.ints
+}
+
+// String just returns the string representation of the functor.
+//
+// This is the implementation of fmt.Stringer
+func (isf intSliceFunctorImpl) String() string {
+	return fmt.Sprintf("%#v", isf.ints)
 }
