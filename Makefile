@@ -16,3 +16,9 @@ bigfunctor:
 chanfunctor: 
 	go build -o bin/chanfunctor ./examples/chanfunctor
 	bin/chanfunctor
+
+
+.PHONY: optionalint
+optional:
+	go build -o bin/optional ./examples/optional
+	bin/optional

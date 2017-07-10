@@ -26,3 +26,4 @@ vendor
 bin/simplefunctor
 bin/bigfunctor
 bin/chanfunctor
+bin/optional
