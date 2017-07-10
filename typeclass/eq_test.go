@@ -10,5 +10,6 @@ import (
 func TestIntEqStrEq(t *testing.T) {
 	intEq := IntEq(1)
 	strEq := StrEq("1")
-	assert.True(t, intEq.Eq(strEq), "'1' != 1")
+	assert.True(t, intEq.Eq(strEq), "1 != '1'")
+	assert.True(t, strEq.Eq(intEq), "'1' != 1")
 }
