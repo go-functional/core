@@ -25,3 +25,4 @@ _testmain.go
 vendor
 bin/simplefunctor
 bin/bigfunctor
+bin/chanfunctor
