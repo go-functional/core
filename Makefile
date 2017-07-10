@@ -12,7 +12,7 @@ bigfunctor:
 	go build -o bin/bigfunctor ./examples/bigfunctor
 	bin/bigfunctor
 
-.PHONE: chanfunctor
+.PHONY: chanfunctor
 chanfunctor: 
 	go build -o bin/chanfunctor ./examples/chanfunctor
 	bin/chanfunctor
