@@ -11,7 +11,7 @@ import (
 func main() {
 	const i = 123
 
-	// create empty and full Option<Int>
+	// create empty and full Optional<Int>
 	emptyInt := functor.EmptyInt()
 	fullInt := functor.SomeInt(i)
 	log.Printf("created OptionalInts %s and %s", emptyInt, fullInt)
@@ -25,7 +25,7 @@ func main() {
 
 	log.Printf("mapped OptionalInts %s and %s", mappedEmptyInt, mappedFullInt)
 
-	// create empty and full Option<error>
+	// create empty and full Optional<error>
 	emptyErr := functor.EmptyErr()
 	fullErr := functor.SomeErr(errors.New("test error"))
 	log.Printf("created OptionalErrs %s and %s", emptyErr, fullErr)
