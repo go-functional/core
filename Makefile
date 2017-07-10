@@ -18,7 +18,7 @@ chanfunctor:
 	bin/chanfunctor
 
 
-.PHONY: optionalint
+.PHONY: optional
 optional:
 	go build -o bin/optional ./examples/optional
 	bin/optional
