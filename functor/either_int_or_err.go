@@ -1,6 +1,8 @@
 package functor
 
 import (
+	"fmt"
+
 	"github.com/go-functional/core/util"
 )
 
@@ -58,4 +60,11 @@ func (e eitherIntOrErrImpl) ToRight() OptionalErrFunctor {
 		return SomeErr(e.err)
 	}
 	return EmptyErr()
+}
+
+func (e eitherIntOrErrImpl) String() string {
+	if e.Left() {
+		return fmt.Sprintf("left(%d)", e.i)
+	}
+	return fmt.Sprintf("right(%s)", e.err)
 }

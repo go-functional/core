@@ -1,6 +1,8 @@
 package functor
 
 import (
+	"fmt"
+
 	"github.com/go-functional/core/util"
 )
 
@@ -43,4 +45,11 @@ func (o optionalIntFunctorImpl) Empty() bool {
 
 func (o optionalIntFunctorImpl) Int() int {
 	return o.i
+}
+
+func (o optionalIntFunctorImpl) String() string {
+	if o.Empty() {
+		return "empty"
+	}
+	return fmt.Sprintf("full(%d)", o.i)
 }

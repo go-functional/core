@@ -1,6 +1,8 @@
 package functor
 
 import (
+	"fmt"
+
 	"github.com/go-functional/core/util"
 )
 
@@ -42,4 +44,11 @@ func (o optionalErrFunctorImpl) Empty() bool {
 
 func (o optionalErrFunctorImpl) Err() error {
 	return o.err
+}
+
+func (o optionalErrFunctorImpl) String() string {
+	if o.err == nil {
+		return "empty"
+	}
+	return fmt.Sprintf("full(%s)", o.err.Error())
 }
