@@ -28,3 +28,4 @@ bin/bigfunctor
 bin/chanfunctor
 bin/optional
 bin/either
+bin/typeclass/eq

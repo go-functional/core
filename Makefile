@@ -27,3 +27,8 @@ optional:
 either: 
 	go build -o bin/either ./examples/either
 	bin/either
+
+.PHONE: typeclass-eq
+typeclass-eq:
+	go build -o bin/typeclass/eq ./examples/typeclass/eq
+	bin/typeclass/eq
