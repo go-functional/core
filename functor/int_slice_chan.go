@@ -25,7 +25,7 @@ type intSliceFromChanFunctorImpl struct {
 func (i intSliceFromChanFunctorImpl) Map(fn func(int) int) IntSliceFunctor {
 	slc := []int{}
 	for elt := range i.ch {
-		slc = append(slc, elt)
+		slc = append(slc, fn(elt))
 	}
 	i.slice = slc
 	return i
