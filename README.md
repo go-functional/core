@@ -3,7 +3,9 @@
 Applying functional programming (FP) concepts to Go!
 
 This repository is an experiment in how far we can push Go to implement
-Functional Programming design patterns.
+Functional Programming design patterns. Note that the types herein are hard-coded
+for specific types, but you could use code generation to produce these FP constructs
+for any type you please!
 
 If you're interested, please contribute any way you wish. Here are some 
 ideas:
