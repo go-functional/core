@@ -44,3 +44,29 @@ func (s StrEq) Eq(e Eq) bool {
 		return false
 	}
 }
+
+// IntSliceEq is the Eq type class implementation for int slices
+type IntSliceEq []int
+
+// Eq determines if s is equal to e
+func (s IntSliceEq) Eq(e Eq) bool {
+	switch x := e.(type) {
+	case IntSliceEq:
+		return intSlicesEq(s, x)
+	default:
+		return false
+	}
+}
+
+func intSlicesEq(sl1, sl2 []int) bool {
+	if len(sl1) != len(sl2) {
+		return false
+	}
+	for i, elt1 := range sl1 {
+		elt2 := sl2[i]
+		if elt1 != elt2 {
+			return false
+		}
+	}
+	return true
+}
