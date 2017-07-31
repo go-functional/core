@@ -43,7 +43,7 @@ Contrary to what you might believe, curried functions are _not_ as insane as the
 ```go
 // cl is the dependency of the HandlerFunc (the curried function). We can call getHandler using any cl we like. For example, in unit tests, we can pass an in-memory database!
 func getHandler(cl *sql.DB) http.HandlerFunc {
-  func(w http.ResponseWriter, r *http.Request) {
+  return func(w http.ResponseWriter, r *http.Request) {
     // do stuff with cl!
     w.WriteHeader(http.StatusOK)
   }
