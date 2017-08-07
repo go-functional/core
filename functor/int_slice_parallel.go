@@ -10,25 +10,20 @@ type parallelIntMapperResult struct {
 }
 
 func parallelIntMapper(ints []int, fn func(int) int) []int {
-	resultsCh := make(chan parallelIntMapperResult)
+	ch := make(chan parallelIntMapperResult)
 	var wg sync.WaitGroup
 	for i, elt := range ints {
 		wg.Add(1)
-		ch := make(chan parallelIntMapperResult)
 		go func(idx int, elt int) {
+			defer wg.Done()
 			ch <- parallelIntMapperResult{idx: idx, val: fn(elt)}
 		}(i, elt)
-		go func() {
-			defer wg.Done()
-			elt := <-ch
-			resultsCh <- elt
-		}()
 	}
 	go func() {
 		wg.Wait()
-		close(resultsCh)
+		close(ch)
 	}()
-	for elt := range resultsCh {
+	for elt := range ch {
 		ints[elt.idx] = elt.val
 	}
 	return ints
