@@ -14,3 +14,6 @@ func plusOne(i int) int {
 func minusOne(i int) int {
 	return i - 1
 }
+func timesTwo(i int) int {
+	return i * 2
+}

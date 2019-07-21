@@ -12,7 +12,7 @@ import (
 //	1. f.Map(func(i int) { return i }) == f
 //		- this means that if you map with a function that does nothing (identity), you get the same
 //			thing
-//	2. f.Map(funcA(funcB(param))) == f.Map(funcA).Map(funcB)
+//	2. f.Map(funcB(funcA(param))) == f.Map(funcA).Map(funcB)
 //		- this means that you should be able to compose functions or execute them in serial
 type IntSliceFunctor interface {
 	fmt.Stringer
