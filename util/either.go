@@ -10,3 +10,11 @@ type Either interface {
 	Right() bool
 	fmt.Stringer
 }
+
+// TransformEither runs onLeft if e.Left() == true and onRight otherwise
+func ForEither(e Either, onLeft, onRight func() error) error {
+	if e.Left() {
+		return onLeft()
+	}
+	return onRight()
+}
