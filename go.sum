@@ -1,2 +1,4 @@
 github.com/arschles/assert v2.0.0+incompatible h1:3U7Uinc6Y5LW9YPGJ805po2thDN/X6yhMgbl1/LbKxk=
 github.com/arschles/assert v2.0.0+incompatible/go.mod h1:m/u69zW43x0h8dTHcv3JJZljINyEYgBuf5fYJP6WikI=
+golang.org/x/sync v0.0.0-20210220032951-036812b2e83c h1:5KslGYwFpkhGh+Q16bwMP3cOontH8FOep7tGV86Y7SQ=
+golang.org/x/sync v0.0.0-20210220032951-036812b2e83c/go.mod h1:RxMgew5VJxzue5/jJTE5uejpjVlOe/izrB70Jof72aM=
