@@ -1,3 +1,0 @@
-# Functors
-
-TODO
