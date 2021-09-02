@@ -19,7 +19,7 @@ import (
 //	Iter(len(slc), func(i uint) error {
 //		slc[i] += 1
 //	})
-func Slice[T any, U any](slc []T, fn func(i uint, t T) (U, error)) ([]U, error) {
+func Map[T any, U any](slc []T, fn func(i uint, t T) (U, error)) ([]U, error) {
 	ret := make([]U, len(slc))
 	for i, t := range slc {
 		u, err := fn(uint(i), t)
@@ -47,7 +47,7 @@ func Slice[T any, U any](slc []T, fn func(i uint, t T) (U, error)) ([]U, error) 
 //	IterPar(context.Background(), slc, func(_ context.Context, _ uint, val int) (string, error) {
 //		return strconv.Itoa(val), nil
 //	})
-func SlicePar[T any, U any](
+func ParMap[T any, U any](
 	ctx context.Context,
 	slc []T,
 	fn func(context.Context, uint, T) (U, error),
