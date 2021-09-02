@@ -5,7 +5,11 @@ This repository contains core libraries for functional programming (FP) in Go. B
 - [`fn`](./fn) - functions and structures for working with functions. For example, you can use `Compose` to join two functions together, and `Curry` to split them apart.
 - [`slice`](./slice) - fundamental operations on slices. For example, you can get the head (first element) or tail (everything but the first element) of a slice each with a function call.
 
->Note: this repository aims to focus on practical uses of FP concepts rather than theory. You will likely not see data structures or containers like `Option`, `Functor`, etc... here. You will see the practical applications of the functionality those structures represent however, like the concept of "mapping" that functors introduce, for example.
+## FP Theory
+
+This repository aims to draw on FP theory to introduce useful functionality to the Go ecosystem. As such, you'll likely not see data structures or containers like `Option`, `Functor`, etc... here. You will, however, see the practical applications of the functionality those concepts. \
+
+For example, this repository provides convenient `Map` and `FlatMap` functionality over slices, which would generally be under the purview of functors and monads, respectively.
 
 ## Note: Work in Progress
 
