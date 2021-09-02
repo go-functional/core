@@ -16,6 +16,10 @@ To use the code herein, you'll need the Go toolchain at least at version 1.17, a
 go test -gcflags=-G=3 ./...
 ```
 
+>At the current version of Go, you'll get an error that looks like the below, and prevents even tests from passing. That's expected and as the generics feature progresses, it will go away.
+>
+>`internal compiler error: Cannot export a generic function (yet)`.
+
 ## Contributing
 
 If you're interested, please contribute any way you wish. Here are some ideas:
