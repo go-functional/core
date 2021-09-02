@@ -1,6 +1,6 @@
 # Functional Programming Core Libraries for Go
 
-This repository contains core libraries for functional programming in Go. Below is a description of the packages herein:
+This repository contains core libraries for functional programming (FP) in Go. Below is a description of the packages herein:
 
 - [`fn`](./fn) - functions and structures for working with functions. For example, you can use `Compose` to join two functions together, and `Curry` to split them apart.
 - [`iter`](./iter) - functions and structures for working with iterable data, like a slice or `map`. For example, you can iterate a slice, call a function on each element, each in a separate goroutine, and aggregate the result, all from a single function call
@@ -19,6 +19,13 @@ go test -gcflags=-G=3 ./...
 >At the current version of Go, you'll get an error that looks like the below, and prevents even tests from passing. That's expected and as the generics feature progresses, it will go away.
 >
 >`internal compiler error: Cannot export a generic function (yet)`.
+
+## Resources and Learning
+
+Not many resources exist for learning how to apply FP concepts to Go. To learn more about the concepts herein, please see the following:
+
+- [FP explained with Javascript](https://github.com/hemanth/functional-programming-jargon)
+- [Learn You a Haskell for Great Good](http://learnyouahaskell.com/)
 
 ## Contributing
 
