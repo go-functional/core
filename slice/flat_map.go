@@ -1,11 +1,9 @@
-package iter
+package slice
 
-
-func FlatMap[T any](slc []T, fn func(t T) []U) []U {
+func FlatMap[T, U any](slc []T, fn func(t T) []U) []U {
 	ret := []U{}
-	for i, val := range slc {
+	for _, val := range slc {
 		ret = append(ret, fn(val)...)
 	}
 	return ret
 }
-

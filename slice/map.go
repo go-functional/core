@@ -1,4 +1,4 @@
-package iter
+package slice
 
 import (
 	"context"
@@ -19,7 +19,10 @@ import (
 //	Iter(len(slc), func(i uint) error {
 //		slc[i] += 1
 //	})
-func Map[T any, U any](slc []T, fn func(i uint, t T) (U, error)) ([]U, error) {
+func Map[T any, U any](
+	slc []T,
+	fn func(i uint, t T) (U, error),
+) ([]U, error) {
 	ret := make([]U, len(slc))
 	for i, t := range slc {
 		u, err := fn(uint(i), t)
@@ -31,10 +34,10 @@ func Map[T any, U any](slc []T, fn func(i uint, t T) (U, error)) ([]U, error) {
 	return ret, nil
 }
 
-// ParMap is similar to Map, except calls fn in a separate goroutine for 
+// ParMap is similar to Map, except calls fn in a separate goroutine for
 // each element in slc. If any one of the calls to fn returns an error,
 // the first that returns an error will have that error returned, and nil will
-// be returned for the slice. fn will be passed a context that is derived from 
+// be returned for the slice. fn will be passed a context that is derived from
 // the input ctx.
 //
 // Common use of this function is to do operations on a slice that can be
