@@ -37,8 +37,8 @@ func Compose[T, U, V any](
 //	curriedFn := Curry(func(t int, u string) string {
 //		return fmt.Sprintf("%d-%s", t, u)
 //	}
-//	answer := curriedFn(1)("two")
-//	// answer will be "1-2"
+// 	fn1 := curriedFn(1)
+//	answer := fn1("two") // answer will be "1-2"
 //
 // Compose is the roughly the opposite of Curry.
 // Curry "expands" one function into two, but Compose
