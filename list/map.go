@@ -1,4 +1,4 @@
-package slice
+package list
 
 import (
 	"context"
@@ -32,6 +32,14 @@ func Map[T any, U any](
 		ret[i] = u
 	}
 	return ret, nil
+}
+
+func FlatMap[T, U any](slc []T, fn func(t T) []U) []U {
+	ret := []U{}
+	for _, val := range slc {
+		ret = append(ret, fn(val)...)
+	}
+	return ret
 }
 
 // ParMap is similar to Map, except calls fn in a separate goroutine for
