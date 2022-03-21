@@ -1,4 +1,4 @@
-package core
+package values
 
 // Tuple is a structure that holds exactly two values.
 // You can read the values, but not change them
@@ -9,7 +9,7 @@ type Tuple[T, U any] struct {
 
 // Tup creates a new tuple with the first parameter being the first
 // element in the tuple and the second being the second
-func Tup[T, U any](first T, second U) Tuple[T, U] {
+func NewTuple[T, U any](first T, second U) Tuple[T, U] {
 	return Tuple[T, U]{
 		first:  first,
 		second: second,
