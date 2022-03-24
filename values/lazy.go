@@ -19,7 +19,7 @@ func NewLazy[T any](run func() (T, error)) *Lazy[T] {
 	}
 }
 
-func (l *Lazy[T]) Get() (T, error) {
+func GetLazy[T any](l *Lazy[T]) (T, error) {
 	l.mut.Lock()
 	defer l.mut.Unlock()
 	if l.done {
@@ -28,4 +28,17 @@ func (l *Lazy[T]) Get() (T, error) {
 	l.val, l.err = l.f()
 	l.done = true
 	return l.val, l.err
+}
+
+func MapLazy[T, U any](l *Lazy[T], f func(T) (U, error)) *Lazy[U] {
+	l.mut.Lock()
+	defer l.mut.Unlock()
+	return NewLazy(func() (U, error) {
+		t, err := GetLazy(l)
+		var zeroU U
+		if err != nil {
+			return zeroU, err
+		}
+		return f(t)
+	})
 }
