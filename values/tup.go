@@ -17,11 +17,19 @@ func NewTuple[T, U any](first T, second U) Tuple[T, U] {
 }
 
 // First gets the first element of the tuple
-func First[T, U any](t Tuple[T, U]) T {
-	return t.first
+func (tup *Tuple[T, U]) GetFirst() T {
+	return tup.first
+}
+
+func (tup *Tuple[T, U]) SetFirst(val T) {
+	tup.first = val
+}
+
+func (tup *Tuple[T, U]) SetSecond(val U) {
+	tup.second = val
 }
 
 // Second gets the second element of the given tuple
-func Second[T, U any](t Tuple[T, U]) U {
-	return t.second
+func (tup *Tuple[T, U]) GetSecond() U {
+	return tup.second
 }
