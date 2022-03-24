@@ -7,6 +7,11 @@ import (
 	"github.com/go-functional/core/values"
 )
 
+// ReceiveWithContext blocks until ch receives a value, is closed, or
+// ctx.Done() receives. In the first case, this function returns
+// the value received and a nil error. In the latter two cases,
+// it returns the zero value of T and a descriptive, non-nil
+// error
 func RecieveWithContext[T any](ctx context.Context, ch <-chan T) (T, error) {
 	var zero T
 	select {
