@@ -32,7 +32,7 @@ func Filter[T any](
 				if !shouldSend {
 					continue
 				}
-				if !maybeSend(ctx, ret, val) {
+				if !SendWithContext(ctx, ret, val) {
 					return
 				}
 			}

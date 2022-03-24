@@ -31,7 +31,7 @@ func Map[T, U any](
 				if !ok {
 					return
 				}
-				if !maybeSend(ctx, ret, fn(val)) {
+				if !SendWithContext(ctx, ret, fn(val)) {
 					return
 				}
 
