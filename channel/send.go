@@ -2,7 +2,7 @@ package channel
 
 import "context"
 
-func maybeSend[T any](
+func SendWithContext[T any](
 	ctx context.Context,
 	ch chan<- T,
 	val T,
